@@ -1,0 +1,4 @@
+The code has been written in the file QuestionThree.py, use phythong to compile as follows:
+
+>> python QuestionThree.py "pattern" "FileName" 
+

@@ -1,0 +1,73 @@
+1a) Loadable Kernel Modules (LKM) are used to extend a running kernel. They are primariy used to add support for new device drivers, filesystems and for adding system calls. At the completition of the required task, the LKM can be unloaded thus saving memory. The loadable kernel modules are stored in the /lib/modules/kernel_version directory. Descriptions of these modules are found in the /boot/modules-info directory. 'kerneld' or 'kmod' deamon can automatically load or remove modules as required. The /etc/modules.conf file lists the modules that should be loaded on startup. 
+
+1b) Run Levels are operating states present on a linux based operating system. These levels determine which programs should be executed after the OS has booted up. System administrators are able to set default runlevels according to their requirements. Runlevels 0, 1 and 6 are standardized while the other can vary. For example, Runlevel 0 halts the system, while runlevel 1 is single-user text mode which is usally used to diagnose and repair serious problems. This mode is only accesible by the system administrator. Root level password is required before starting the shell in single user mode. Additionally, each runlevel has a specific function designed. 
+|-----------------------------------------------------|
+| Runlevel 0: shuts down the system			|
+| Runlevel 1: single-user mode			|
+| Runlevel 2: multi-user mode without networking	|
+| Runlevel 3: multi-user mode with networking		|
+| Runlevel 4: user-definable				|
+| Runlevel 5: multi-user mode with networking		|
+| Runlevel 6: reboots the system to restart it	|
+|-----------------------------------------------------|
+ 
+1c) sed -n '/\([a-zA-Z0-9_]\)\1\1\1/p' testQ1.txt
+    
+   -> sed is being used to find occurences of four conesecutive and identical word characters
+   -> ([a-zA-Z0-9_]\) this section is used to filter out alphabets, either in lower case or upper and any numbers
+   -> \1\1\1 used to represent occurence of the character another 3 times resulting in a total of 4 occurences as required 
+   -> /p is used to print out the results
+   -> testQ1.txt is a test file contatining:
+      	1 hello
+  	2 This is a test
+  	3 eeee
+  	4 iiii
+  	5 lol
+  	6 gg bois
+   -> Result of running sed on command line:
+      >> sed -n '/\([a-zA-Z0-9_]\)\1\1\1/p' testQ1.txt
+         eeee
+         iiii
+
+1d) The bash script uses the sed, Stream Text Editor. 
+    
+    sed "s/[[:punct:]]//g;
+    
+    This command finds punctuation symbols and replaces them with nothing (therefore removing them)
+    The /g present at the end means the substitution is done repetitively (globally)
+    
+    s/\b$1\b/@/g;
+    This command uses sed and replaces  with @ symbol and does it globally
+
+    s/[[:alnum:]]*//g;
+    This command finds alphanumeric characters and the astricks matches when it is found 0 or more times. This is replaced again with nothing and done globally.
+
+    s/ //g;
+    This command finds spaces and removes them and does this globally
+
+    /^$/d;
+    This command deletes all starting with $ (in bash $variable) that are found at the start of a line
+
+    sed ':a;N;$!ba;s/\n//g;' |
+    This reads the whole file and removes newlines
+
+    sed 's/@$//g;
+    This command finds all with '@' at the end of the string and removes it globally
+
+    s/@/\n/g' > temp;
+    This command finds '@' and replaces it with a newline, then redirects the output to temp
+
+    sed = temp | sed '/^$/d;:a;N;$!ba;s/\n/ /g;
+    This command pipes temp as input for sed and finds all newlines and replaces them with a space and does this globally
+
+    s/\(.\)* \(\b[0-9]*\) $/\2/g;'
+        
+    
+
+
+
+
+
+
+
+    
